@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revealr</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico?">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="my-5 mx-auto" style="max-width: 800px;">
+        <h1>Step 1</h1>
+        <p>List the possible answers, separated by commas.</p>
+        <textarea id="options" class="form-control" rows="3">Accepted, Waitlisted, Rejected</textarea>
+        <h1 class="mt-4">Step 2</h1>
+        <p>My answer is:</p>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" id="dropdown-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Select an option
+            </button>
+            <ul class="dropdown-menu" id="dropdown-list"></ul>
+        </div><br>
+        <div class="container p-0">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>I would be okay with seeing the other person's answer if their answer is:</p>
+                    <div id="reveal-other-form" class="form-check"></div><br>
+                </div>
+                <div class="col-md-6">
+                    <p>I would be okay with revealing my answer if the other person's answer is:</p>
+                    <div id="reveal-mine-form" class="form-check"></div><br>
+                </div>
+            </div>
+        </div>
+        <h1>Step 3</h1>
+        <button id="generate-button" class="btn btn-primary mt-2 mb-3" onclick="generateRecipientURL()" disabled>Generate URL</button>
+        <p>Send this URL to the other person, and the recipient will complete the process.</p>
+        <div class="input-group">
+            <button class="btn btn-outline-secondary" type="button" id="copy-button">Copy</button>
+            <input type="text" id="url" class="form-control" readonly>
+        </div>
+    </div>
+    <script src="util.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
