@@ -19,7 +19,7 @@ function parseURLParams() {
 }
 
 function resultsURL(senderReveal, recipientReveal) {
-    let baseURL = window.location.href.split('?')[0].replace('/recipient.html', '');
+    let baseURL = window.location.href.split('?')[0].replace('/recipient.html', '').replace(/\/$/, '');;
     return `${baseURL}/results.html?senderReveal=${senderReveal}&recipientReveal=${recipientReveal}`
 }
 

@@ -18,7 +18,7 @@ copyButton.addEventListener('click', () => {
 
 function generateRecipientURL() {
     let answers = getAnswers();
-    let baseURL = window.location.href.split('?')[0].replace('/index.html', '');
+    let baseURL = window.location.href.split('?')[0].replace('/index.html', '').replace(/\/$/, '');
     let options = encodeURIComponent(answers.join('-'));
     let answer = answers.indexOf(dropdownButton.textContent);
     let senderWantsToHear = checkedIndices(answers, 'reveal-other-form').join('-');
