@@ -13,13 +13,17 @@
 
 <body>
     <div class="my-5 mx-auto" style="max-width: 800px;">
-        <div class="shadow-panel">
-            <!-- <h1>Step 1</h1> -->
+        <div class="shadow-panel mb-3">
+            <h3>What is Revealr?</h3>
+            <p>Revealr is a platform designed for consensual information exchange, especially for sensitive information such as school admission results.</p>
+            <p>Start by entering your information and sharing preferences, then invite someone else to do the same. The system cross-references both sets of preferences, ensuring that information is revealed only when both parties have mutually consented to the exchange.</p>
+            <p class="mb-0">To get started, fill out the form below.</p>
+        </div>
+        <div class="shadow-panel mb-3">
             <p>List the possible answers, separated by commas.</p>
             <textarea id="options" class="form-control" rows="3">Accepted, Waitlisted, Rejected</textarea>
         </div>
-        <div class="shadow-panel mt-3">
-            <!-- <h1 class="mt-4">Step 2</h1> -->
+        <div class="shadow-panel mb-3">
             <p>My answer is:</p>
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" id="dropdown-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,8 +44,7 @@
                 </div>
             </div>
         </div>
-        <div class="shadow-panel mt-3">
-            <!-- <h1>Step 3</h1> -->
+        <div class="shadow-panel mb-3">
             <button id="generate-button" class="btn btn-primary mt-2 mb-3" onclick="generateRecipientURL()" disabled>Generate URL</button>
             <p>Send this URL to the other person, and the recipient will complete the process.</p>
             <div class="input-group">
