@@ -29,8 +29,10 @@ function parseURLParams() {
 }
 
 function resultsURL(senderReveal, recipientReveal) {
-    let baseURL = window.location.href.split('?')[0].replace('/recipient.html', '').replace(/\/$/, '');;
-    return `${baseURL}/results.html?senderReveal=${senderReveal}&recipientReveal=${recipientReveal}`
+    let baseURL = window.location.href.split('?')[0].replace('/recipient.html', '').replace(/\/$/, '');
+    let params = `senderReveal=${senderReveal}&recipientReveal=${recipientReveal}`;
+    let encodedParams = btoa(params); // Base64 encode
+    return `${baseURL}/results.html?data=${encodedParams}`;
 }
 
 function goToResults() {
