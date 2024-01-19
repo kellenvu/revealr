@@ -23,8 +23,13 @@ function generateRecipientURL() {
     let answer = answers.indexOf(dropdownButton.textContent);
     let senderWantsToHear = checkedIndices(answers, 'reveal-other-form').join('-');
     let senderRequiresToReveal = checkedIndices(answers, 'reveal-mine-form').join('-');
-    urlField.value = `${baseURL}/recipient.html?options=${options}&senderAnswer=${answer}&senderWantsToHear=${senderWantsToHear}&senderRequiresToReveal=${senderRequiresToReveal}`;
+
+    let params = `options=${options}&senderAnswer=${answer}&senderWantsToHear=${senderWantsToHear}&senderRequiresToReveal=${senderRequiresToReveal}`;
+    let encodedParams = btoa(params); // Base64 encode
+
+    urlField.value = `${baseURL}/recipient.html?data=${encodedParams}`;
 }
+
 
 function getAnswers() {
     const answers = optionsInput.value.split(',').map((answer) => answer.trim());

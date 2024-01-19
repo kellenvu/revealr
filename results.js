@@ -6,8 +6,8 @@ function displayResults() {
     const senderReveal = getURLParameter('senderReveal') || 'Not revealed';
     const recipientReveal = getURLParameter('recipientReveal') || 'Not revealed';
     const resultsHTML = `
-        <p>Answer from Person 1 (Sender): ${senderReveal}</p>
-        <p>Answer from Person 2 (Recipient): ${recipientReveal}</p>
+        <p><b>Answer from Person 1 (Sender)</b>: ${senderReveal}</p>
+        <p class="mb-0"><b>Answer from Person 2 (Recipient)</b>: ${recipientReveal}</p>
     `;
     document.getElementById('results').innerHTML = resultsHTML;
 }

@@ -10,12 +10,22 @@ function toIntArray(str) {
 }
 
 function parseURLParams() {
+
     const params = new URLSearchParams(window.location.search);
-    const options = params.get('options') ? params.get('options').split('-') : [];
-    const senderAnswer = params.get('senderAnswer') ? parseInt(params.get('senderAnswer')) : null;
-    const senderWantsToHear = params.get('senderWantsToHear') ? toIntArray(params.get('senderWantsToHear')) : [];
-    const senderRequiresToReveal = params.get('senderRequiresToReveal') ? toIntArray(params.get('senderRequiresToReveal')) : [];
-    return { options, senderAnswer, senderWantsToHear, senderRequiresToReveal }
+    const encodedData = params.get('data');
+    if (!encodedData) {
+        return {};
+    }
+
+    const decodedData = atob(encodedData); // Base64 decode
+    const decodedParams = new URLSearchParams(decodedData);
+
+    const options = decodedParams.get('options') ? decodedParams.get('options').split('-') : [];
+    const senderAnswer = decodedParams.get('senderAnswer') ? parseInt(decodedParams.get('senderAnswer')) : null;
+    const senderWantsToHear = decodedParams.get('senderWantsToHear') ? toIntArray(decodedParams.get('senderWantsToHear')) : [];
+    const senderRequiresToReveal = decodedParams.get('senderRequiresToReveal') ? toIntArray(decodedParams.get('senderRequiresToReveal')) : [];
+
+    return { options, senderAnswer, senderWantsToHear, senderRequiresToReveal };
 }
 
 function resultsURL(senderReveal, recipientReveal) {
