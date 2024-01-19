@@ -4,7 +4,7 @@ function getURLParameter(name) {
 
 function displayResults() {
 
-    let senderReveal = 'Not revealed';
+    let initiatorReveal = 'Not revealed';
     let recipientReveal = 'Not revealed';
 
     const params = new URLSearchParams(window.location.search);
@@ -12,11 +12,11 @@ function displayResults() {
 
     const decodedParams = new URLSearchParams(data);
 
-    senderReveal = decodedParams.get('senderReveal') || 'Not revealed';
+    initiatorReveal = decodedParams.get('initiatorReveal') || 'Not revealed';
     recipientReveal = decodedParams.get('recipientReveal') || 'Not revealed';
 
     document.getElementById('results').innerHTML = `
-        <p><b>Answer from Person 1 (Sender)</b>: ${senderReveal}</p>
+        <p><b>Answer from Person 1 (Initiator)</b>: ${initiatorReveal}</p>
         <p class="mb-0"><b>Answer from Person 2 (Recipient)</b>: ${recipientReveal}</p>
     `;;
 }

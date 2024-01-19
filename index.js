@@ -21,10 +21,10 @@ function generateRecipientURL() {
     let baseURL = window.location.href.split('?')[0].replace('/index.html', '').replace(/\/$/, '');
     let options = encodeURIComponent(answers.join('-'));
     let answer = answers.indexOf(dropdownButton.textContent);
-    let senderWantsToHear = checkedIndices(answers, 'reveal-other-form').join('-');
-    let senderRequiresToReveal = checkedIndices(answers, 'reveal-mine-form').join('-');
+    let initiatorWantsToHear = checkedIndices(answers, 'reveal-other-form').join('-');
+    let initiatorRequiresToReveal = checkedIndices(answers, 'reveal-mine-form').join('-');
 
-    let params = `options=${options}&senderAnswer=${answer}&senderWantsToHear=${senderWantsToHear}&senderRequiresToReveal=${senderRequiresToReveal}`;
+    let params = `options=${options}&initiatorAnswer=${answer}&initiatorWantsToHear=${initiatorWantsToHear}&initiatorRequiresToReveal=${initiatorRequiresToReveal}`;
     let encodedParams = btoa(params); // Base64 encode
 
     urlField.value = `${baseURL}/recipient.html?data=${encodedParams}`;

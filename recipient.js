@@ -3,7 +3,7 @@ let dropdownList = document.getElementById('dropdown-list');
 let resultsButton = document.getElementById('results-button');
 let revealOtherForm = document.getElementById('reveal-other-form');
 let revealMineForm = document.getElementById('reveal-mine-form');
-const { options, senderAnswer, senderWantsToHear, senderRequiresToReveal } = parseURLParams();
+const { options, initiatorAnswer, initiatorWantsToHear, initiatorRequiresToReveal } = parseURLParams();
 
 function toIntArray(str) {
     return str.split('-').map((num) => parseInt(num));
@@ -21,37 +21,37 @@ function parseURLParams() {
     const decodedParams = new URLSearchParams(decodedData);
 
     const options = decodedParams.get('options') ? decodedParams.get('options').split('-') : [];
-    const senderAnswer = decodedParams.get('senderAnswer') ? parseInt(decodedParams.get('senderAnswer')) : null;
-    const senderWantsToHear = decodedParams.get('senderWantsToHear') ? toIntArray(decodedParams.get('senderWantsToHear')) : [];
-    const senderRequiresToReveal = decodedParams.get('senderRequiresToReveal') ? toIntArray(decodedParams.get('senderRequiresToReveal')) : [];
+    const initiatorAnswer = decodedParams.get('initiatorAnswer') ? parseInt(decodedParams.get('initiatorAnswer')) : null;
+    const initiatorWantsToHear = decodedParams.get('initiatorWantsToHear') ? toIntArray(decodedParams.get('initiatorWantsToHear')) : [];
+    const initiatorRequiresToReveal = decodedParams.get('initiatorRequiresToReveal') ? toIntArray(decodedParams.get('initiatorRequiresToReveal')) : [];
 
-    return { options, senderAnswer, senderWantsToHear, senderRequiresToReveal };
+    return { options, initiatorAnswer, initiatorWantsToHear, initiatorRequiresToReveal };
 }
 
-function resultsURL(senderReveal, recipientReveal) {
+function resultsURL(initiatorReveal, recipientReveal) {
     let baseURL = window.location.href.split('?')[0].replace('/recipient.html', '').replace(/\/$/, '');
-    let params = `senderReveal=${senderReveal}&recipientReveal=${recipientReveal}`;
+    let params = `initiatorReveal=${initiatorReveal}&recipientReveal=${recipientReveal}`;
     let encodedParams = btoa(params); // Base64 encode
     return `${baseURL}/results.html?data=${encodedParams}`;
 }
 
 function goToResults() {
 
-    let senderReveal = '';
+    let initiatorReveal = '';
     let recipientReveal = '';
     let recipientAnswer = options.indexOf(dropdownButton.textContent);
     let recipientRequiresToReveal = checkedIndices(options, 'reveal-mine-form');
     let recipientWantsToHear = checkedIndices(options, 'reveal-other-form');
 
-    if (senderWantsToHear.includes(recipientAnswer) && recipientRequiresToReveal.includes(senderAnswer)) {
+    if (initiatorWantsToHear.includes(recipientAnswer) && recipientRequiresToReveal.includes(initiatorAnswer)) {
         recipientReveal = options[recipientAnswer];
     }
 
-    if (recipientWantsToHear.includes(senderAnswer) && senderRequiresToReveal.includes(recipientAnswer)) {
-        senderReveal = options[senderAnswer];
+    if (recipientWantsToHear.includes(initiatorAnswer) && initiatorRequiresToReveal.includes(recipientAnswer)) {
+        initiatorReveal = options[initiatorAnswer];
     }
 
-    window.location.href = resultsURL(senderReveal, recipientReveal);
+    window.location.href = resultsURL(initiatorReveal, recipientReveal);
 }
 
 window.onload = function() {
